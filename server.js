@@ -3,7 +3,7 @@ import Fastify from 'fastify';
 const fastify = Fastify({ logger: true })
 
 // ヘッダー認証の追加
-fastify.addHook('onRequest' async (request, reply) => {
+fastify.addHook('onRequest', async (request, reply) => {
   const apikey = request.headers['x-api-key']
 
   if (apikey !== '123' ) {
