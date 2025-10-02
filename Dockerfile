@@ -7,12 +7,14 @@ FROM node:20-alpine
 # ./はこのWORKDIRを意味する
 WORKDIR /usr/src/app
 
-# doker buildを実行したフォルダからpackage.jsonを作業ディレクトリにコピーする
+# doker buildを実行したフォルダからpackage.jsonとpackage-look.jsonを作業ディレクトリにコピーする
+# *をつけることでlockファイルも含められる
+# lockファイルのコピーによって依存関係のバージョンが固定され、環境の再現性が高まる
 # このコードでは /usr/src/app にコピーされる
 COPY package*.json ./
 
-# 実行時にコマンドを実行してその結果をイメージに残す
-RUN npm install --production
+# 依存関係をインストールしてその結果をイメージに残す
+RUN npm install
 
 # プロジェクトの全ファイルをイメージ内にコピーする
 COPY . .
@@ -20,7 +22,7 @@ COPY . .
 # 以降の実行をrootではなく指定ユーザー（ここではnode）で行う
 USER node
 
-# Fastifyポート3000番を使うことを宣言
+# このコンテナが利用するポートを宣言する
 EXPOSE 3000
 
 # コンテナが起動された時に実行されるデフォルトのコマンドを指定
