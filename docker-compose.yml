@@ -1,0 +1,7 @@
+
+services:
+  app:
+    build: .
+    container_name: docker-test
+    ports:
+      - "8080:3000"
