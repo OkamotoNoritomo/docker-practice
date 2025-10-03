@@ -5,3 +5,8 @@ services:
     container_name: docker-test
     ports:
       - "8080:3000"
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    command: npm run dev
+

@@ -26,4 +26,5 @@ USER node
 EXPOSE 3000
 
 # コンテナが起動された時に実行されるデフォルトのコマンドを指定
-CMD ["node", "server.js"]
+CMD ["npm", "start", "dev"]
+
