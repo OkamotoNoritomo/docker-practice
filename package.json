@@ -4,10 +4,14 @@
   "type": "module",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "dev": "npx nodemon server.js"
   },
   "dependencies": {
     "fastify": "^5.0.0"
-  }
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+ }
 }
 
